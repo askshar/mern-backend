@@ -9,10 +9,20 @@ app.use(cors({
     credentials: true
 }))
 
-app.use(express.json({limit: "16kb"}));
-app.use(express.urlencoded({limit: "16kb", extended: true}));
+app.use(express.json({ limit: "16kb" }));
+app.use(express.urlencoded({ limit: "16kb", extended: true }));
 app.use(express.static("public"));
 app.use(cookieParser());
+// app.use((err, req, res, next) => {
+//     if (err instanceof ApiError) {
+//         return res.status(err.statusCode).json({
+//             success: err.success,
+//             message: err.message,
+//             errors: err.errors,
+//             data: err.data || null,
+//         });
+//     }
+// });
 
 // routes
 import userRouter from "./routes/user.routes.js";
